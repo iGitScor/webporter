@@ -1,0 +1,26 @@
+# ESLint documentation can be found at http://eslint.org/docs/
+# find . -path ./node_modules -prune -o -name "*.js" -o -name "*.jsx" -exec eslint {} \;
+
+env:
+  mocha: false
+  node: true
+  browser: false
+
+extends: "airbnb"
+
+rules:
+  no-var: 0
+  no-console: 0
+  no-param-reassign: 0
+  no-underscore-dangle: 0
+  no-mixed-operators:
+    - 'error'
+    - groups:  [["&", "|", "^", "~", "<<", ">>", ">>>"], ["&&", "||"]]
+  no-extend-native:
+    - 'error'
+    - exceptions:
+      - Object
+  vars-on-top: 0
+  strict: 0
+  comma-dangle: 0
+  wrap-iife: 1
