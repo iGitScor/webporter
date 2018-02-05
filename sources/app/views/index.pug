@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="description" content="Webporter, a smart and easy data exporter tool for non-tech people")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title Webporter - Smart and Easy data exporter
+    script(src="https://unpkg.com/vue")
+    link(href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    link(rel="stylesheet" href="vendor/material-design-lite/material.min.css")
+    style.
+      #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+      }
+    link(rel="stylesheet" type="text/css" href="style.css")
+  body
+    .demo-layout.mdl-layout.mdl-layout--fixed-header.mdl-js-layout.mdl-color--grey-100
+      header.demo-header.mdl-layout__header.mdl-layout__header--scroll.mdl-color--grey-900.mdl-color-text--grey-800
+        .mdl-layout__header-row
+          h1.mdl-layout-title
+            a(href="/" style="text-decoration:none") ⥅
+              small &nbsp;Smart & Easy Data Exporter
+      main#app.demo-main.mdl-layout__content
+        .mdl-grid
+          .mdl-cell.mdl-cell--2-col.mdl-cell--hide-tablet.mdl-cell--hide-phone
+          .demo-content.mdl-color--white.mdl-shadow--4dp.content.mdl-color-text--grey-800.mdl-cell.mdl-cell--10-col
+            .demo-crumbs.mdl-color-text--grey-500
+              a(href="/") Webporter
+              |  > Home
+            .mdl-typography--text-center
+              .mdl-textfield.mdl-js-textfield
+                label.mdl-textfield__label(for="search")
+                  i.material-icons search
+                div
+                  input#search.mdl-textfield__input.mdl-typography--text-center(type="search")
+            exports
+      footer.demo-footer.mdl-mini-footer.mdl-color--pink-600.mdl-color-text--white
+        .mdl-mini-footer--left-section
+          ul.mdl-mini-footer--link-list
+            li
+              | © iScor. 
+              a(href="http://twitter.com/iTweetScor" target="_blank") @iTweetScor
+    script(src="vendor/material-design-lite/material.min.js")
+    script(src="vendor/validatinator.min.js")
+    script(src="js/search.js")
+    script(src="js/loader.js")
+    script(src="js/webporter.js")

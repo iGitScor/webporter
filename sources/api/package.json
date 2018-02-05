@@ -1,0 +1,16 @@
+{
+  "name": "webporter.api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "data/db.js",
+  "scripts": {
+    "api": "json-graphql-server data/db.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "iGitScor <sebastien.correaud@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "json-graphql-server": "^2.1.1"
+  }
+}
