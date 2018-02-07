@@ -3,10 +3,13 @@ import fetch from 'node-fetch';
 import express from 'express';
 import Sequelize from 'sequelize';
 
-var bodyParser = require('body-parser');
-var json2csv = require('json2csv');
+const bodyParser = require('body-parser');
+const json2csv = require('json2csv');
 
-var db = new Sequelize('webporter', 'root', 'password', {
+// @TODO: dotenv
+const GQL_SERVER = process.env.GQL || 'http://localhost:3000';
+
+const db = new Sequelize('webporter', 'root', 'password', {
   host: 'localhost',
   dialect: 'mysql',
 
@@ -38,7 +41,7 @@ app.get('/exports.json', async (req, res) => {
     }
   }`;
 
-  fetch(`http://localhost:3000/?query=${encodeURIComponent(query)}`)
+  fetch(`${GQL_SERVER}/?query=${encodeURIComponent(query)}`)
     .then(response => response.json())
     .then(json => res.json(json));
 });
@@ -54,7 +57,7 @@ app.get('/export', async (req, res) => {
     }
   }`;
 
-  fetch(`http://localhost:3000/?query=${encodeURIComponent(query)}`)
+  fetch(`${GQL_SERVER}/?query=${encodeURIComponent(query)}`)
     .then(response => response.json())
     .then(json => res.json(json));
 });
@@ -66,7 +69,7 @@ app.post('/export', async (req, res) => {
     }
   }`;
 
-  fetch(`http://localhost:3000/?query=${encodeURIComponent(query)}`)
+  fetch(`${GQL_SERVER}/?query=${encodeURIComponent(query)}`)
     .then(response => response.json())
     .then(json => json.data.Request.query)
     .then((_query) => {
@@ -77,14 +80,14 @@ app.post('/export', async (req, res) => {
           type: Sequelize.QueryTypes.SELECT
         })
         .then((data) => {
-          var fields = Object.keys(data[0]);
-          var csv = json2csv({ data, fields, fieldNames: fields });
+          const fields = Object.keys(data[0]);
+          const csv = json2csv({ data, fields, fieldNames: fields });
           fs.writeFile(
             `public/export_${req.body.export_id}.csv`,
             csv,
             (writerException) => {
               if (writerException) throw writerException;
-              res.send(`http://127.0.0.1:3001/export_${req.body.export_id}.csv`);
+              res.send(`/export_${req.body.export_id}.csv`);
             }
           );
         });
@@ -95,7 +98,7 @@ app.use(express.static('public'));
 
 const port = process.env.PORT || 3001;
 
-app.listen((_port, err) => {
+app.listen(port, (err) => {
   if (err) {
     console.error(err);
   }
